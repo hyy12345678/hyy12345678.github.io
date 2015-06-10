@@ -4,7 +4,7 @@ title:  "Jekyll工作手册"
 date:   2015-06-10 11:50:25
 categories: 工作手册
 tags: work_manual
-image: /assets/article_images/dawn.JPG
+image: /assets/article_images/desktop.JPG
 ---
 # 写在前面的话
 
