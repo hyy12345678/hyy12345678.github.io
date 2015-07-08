@@ -6,34 +6,29 @@ categories: clay_created
 tags: clay_created
 image: /assets/article_images/nightmare.JPG
 ---
-从jekllForBootstrap转到原生jekyll,缺少了rake命令支持,每次新建文章都显得比较繁琐。于是自己用python写了个脚本，实现类似的功能,自己用着还行,代码如下：
-<code>
+> 从jekllForBootstrap转到原生jekyll,缺少了rake命令支持,每次新建文章都显得比较繁琐。于是自己用python写了个脚本，实现类似的功能,自己用着还行,代码如下：
 
+<code>
+    
     #!/usr/bin/env python
     #-*- coding: utf-8 -*-
     import time
     import os
     import sys
-
     def buildThemeDic():
         themeDic = {};
         themeDic["W"] = "/assets/article_images/desktop.JPG";
         themeDic["N"] = "/assets/article_images/nightmare.JPG";
         themeDic["D"] = "/assets/article_images/dawn.JPG";
         return themeDic;
-
     def checkEnv():
         basePath = os.path.abspath('.');
         checkPath = basePath + "/_posts"
         return os.path.exists(checkPath);
-
     def checkAndWrite(time,title,content):
-
         fileName = time+'-'+title+'.md';
-
         basePath = os.path.abspath('.');
         checkFile = basePath + "/_posts/"+fileName;
-
         if os.path.exists(checkFile):
             print "title you input is already exists,change a title!";
             sys.exit(0);
@@ -43,7 +38,6 @@ image: /assets/article_images/nightmare.JPG
             f.close;
             print "Your file is created,path is :"+checkFile;
             print "~~~ Enjoy your trip and have fun ~~~";
-
     docMsg = '''---
     layout: post
     title:  %s
@@ -53,13 +47,10 @@ image: /assets/article_images/nightmare.JPG
     image: %s
     ---
     ''';
-
     if not checkEnv():
         print "you don't have _posts folder ,check the environment";
         sys.exit(0);
-
     themeDic = buildThemeDic();
-
     print "Enter your title:";
     title = raw_input().title();
     #print "your title is :"+title;
@@ -88,5 +79,4 @@ image: /assets/article_images/nightmare.JPG
     fileNameTitle = "-".join(title.split());
 
     checkAndWrite(fileNameTime,fileNameTitle,docMsg);
-
 </code>
