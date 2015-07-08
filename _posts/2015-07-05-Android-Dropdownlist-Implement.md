@@ -20,16 +20,18 @@ REFRESHING 刷新中时，为此状态
  
 ### 2.1 onTouchEvent函数
 public boolean onTouchEvent(MotionEvent event)根据用户在屏幕上的move事件，进行相应操作，如下：
-ACTION_DOWN表示用户手指刚接触屏幕，会记录用户此时touch的点的y坐标，在下面调整高度时使用
-ACTION_MOVE表示用户手指正在屏幕上移动，此时会不断调整header的高度，即下拉时刷新item部分高度的不断变化
-ACTION_UP表示用户手指离开屏幕，此时会根据当前状态决定是进行刷新还是放弃刷新，若刷新调用用户设置的OnRefreshListener接口。
+
+- ACTION_DOWN表示用户手指刚接触屏幕，会记录用户此时touch的点的y坐标，在下面调整高度时使用
+- ACTION_MOVE表示用户手指正在屏幕上移动，此时会不断调整header的高度，即下拉时刷新item部分高度的不断变化
+- ACTION_UP表示用户手指离开屏幕，此时会根据当前状态决定是进行刷新还是放弃刷新，若刷新调用用户设置的OnRefreshListener接口。
  
 ### 2.2 onScrollStateChanged函数
 public void onScrollStateChanged(AbsListView view, int scrollState)
 记录listView当前的滚动状态到currentScrollState，包括三种状态：
-SCROLL_STATE_TOUCH_SCROLL ListView正在滚动中，并且手指尚未离开屏幕
-SCROLL_STATE_FLING ListView仍在滚动中，但用户手指已经离开屏幕
-SCROLL_STATE_IDLE ListView已经停止滚动
+
+- SCROLL_STATE_TOUCH_SCROLL ListView正在滚动中，并且手指尚未离开屏幕
+- SCROLL_STATE_FLING ListView仍在滚动中，但用户手指已经离开屏幕
+- SCROLL_STATE_IDLE ListView已经停止滚动
  
 ### 2.3 onScroll函数
 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
