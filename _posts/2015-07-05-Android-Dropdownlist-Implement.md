@@ -6,6 +6,7 @@ categories: clay_created
 tags: clay_created
 image: /assets/article_images/dawn.JPG
 ---
+
 # 一个自定义下拉刷新ListView的实现     
 <b/>
 > 原理很简单：通过对ListView添加了一个刷新layout，滚动中时不断改变header的高度和内容并记录一些状态，在用户手指离开屏幕时根据状态决定进行刷新还是放弃刷新。
