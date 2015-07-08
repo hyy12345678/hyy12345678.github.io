@@ -13,10 +13,11 @@ image: /assets/article_images/dawn.JPG
 
 主要是通过重写ListView的onTouchEvent和OnScrollListener的onScrollStateChanged、onScroll函数实现
 先介绍下刷新状态共有四种，如下：
-CLICK_TO_REFRESH 点击刷新状态，为初始状态
-DROP_DOWN_TO_REFRESH 当刷新layout高度低于一定范围时，为此状态
-RELEASE_TO_REFRESH 当刷新layout高度高于一定范围时，为此状态
-REFRESHING 刷新中时，为此状态
+
+- CLICK_TO_REFRESH 点击刷新状态，为初始状态
+- DROP_DOWN_TO_REFRESH 当刷新layout高度低于一定范围时，为此状态
+- RELEASE_TO_REFRESH 当刷新layout高度高于一定范围时，为此状态
+- REFRESHING 刷新中时，为此状态
  
 ### 2.1 onTouchEvent函数
 public boolean onTouchEvent(MotionEvent event)根据用户在屏幕上的move事件，进行相应操作，如下：
