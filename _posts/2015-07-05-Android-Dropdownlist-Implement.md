@@ -6,9 +6,8 @@ categories: clay_created
 tags: clay_created
 image: /assets/article_images/dawn.JPG
 ---
-
-# 一个自定义下拉刷新ListView的实现原理   
-
+# 一个自定义下拉刷新ListView的实现     
+<b/>
 > 原理很简单：通过对ListView添加了一个刷新layout，滚动中时不断改变header的高度和内容并记录一些状态，在用户手指离开屏幕时根据状态决定进行刷新还是放弃刷新。
 
 主要是通过重写ListView的onTouchEvent和OnScrollListener的onScrollStateChanged、onScroll函数实现
@@ -36,8 +35,9 @@ public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCoun
 根据listView当前的滚动状态即currentScrollState和当前刷新的状态不断修改header内容显示和刷新状态，如下：
 
 **ListView为SCROLL_STATE_TOUCH_SCROLL状态(按着不放滚动中)并且刷新状态不为REFRESHING**  
-- a. 刷新对应的item可见时，若刷新layout高度超出范围，则置刷新状态为RELEASE_TO_REFRESH；若刷新layout高度低于高度范围，则置刷新状态为DROP_DOWN_TO_REFRESH。
-- b. 刷新对应的item不可见，重置header
+
+*  a. 刷新对应的item可见时，若刷新layout高度超出范围，则置刷新状态为RELEASE_TO_REFRESH；若刷新layout高度低于高度范围，则置刷新状态为DROP_DOWN_TO_REFRESH。
+*  b. 刷新对应的item不可见，重置header
  
 **ListView为SCROLL_STATE_FLING状态(松手滚动中)**  
 
