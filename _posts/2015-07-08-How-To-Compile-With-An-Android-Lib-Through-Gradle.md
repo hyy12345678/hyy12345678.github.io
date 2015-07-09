@@ -11,7 +11,6 @@ image: /assets/article_images/nightmare.JPG
 ### 怎样创建一个Android Lib（库项目)
 创建一个Android Lib工程和创建一个Android Application工程没有太大的不同。但还是有一点小区别的。
 他们使用了不同的Plugin，但是在内部这些plugin共享了大部分的代码，并且他们都是由相同的com.android.tools.build.gradle.jar提供的。
-{% highlight groovy %}
 
     apply plugin: 'com.android.library'
     android {
@@ -34,7 +33,7 @@ image: /assets/article_images/nightmare.JPG
         compile fileTree(dir: 'libs', include: ['*.jar'])
         compile 'com.android.support:appcompat-v7:22.1.1'
     }
-{% endhighlight %}
+
 
 这里创建了一个使用API－22编译SourceSet的库项目。
 
