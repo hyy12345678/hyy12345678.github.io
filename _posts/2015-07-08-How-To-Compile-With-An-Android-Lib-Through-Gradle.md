@@ -43,7 +43,6 @@ image: /assets/article_images/nightmare.JPG
 
 ### 引用一个库项目的方法
 引用一个库项目和引用一个普通项目的方法是一样的。
-{% highlight groovy %}
 
     dependencies {
         compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -51,7 +50,7 @@ image: /assets/article_images/nightmare.JPG
         compile(project(':libraries:hyy-android-common-lib')) {
             exclude group: 'com.android.support', module: 'appcompat-v7'
     }
-{% endhighlight %}
+
 
 ### 库项目的发布
 一般情况下一个库只会发布它的release variant版本。这个版本会被所有引用它的项目使用。
