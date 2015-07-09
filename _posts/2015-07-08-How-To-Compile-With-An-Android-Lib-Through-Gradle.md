@@ -35,6 +35,7 @@ image: /assets/article_images/nightmare.JPG
         compile 'com.android.support:appcompat-v7:22.1.1'
     }
 {% endhighlight %}
+
 这里创建了一个使用API－22编译SourceSet的库项目。
 
 ### 普通项目和库项目的区别
