@@ -14,7 +14,8 @@ image: /assets/article_images/desktop.JPG
 
 - 项目中使用如下开源工程，这个周末抽空研究一下。
 
-
+<pre>
+    <code>
     compile 'com.fasterxml.jackson.core:jackson-core:2.6.1'
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.1'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.6.1'
@@ -22,7 +23,8 @@ image: /assets/article_images/desktop.JPG
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.squareup.retrofit:converter-jackson:1.9.0'
-
+    </code>
+</pre>
 
 - 当然还有一些公司内部自己做的aar包，由于没有source，就先不管了，等到项目开展时，自然会接触到怎么做。
 
