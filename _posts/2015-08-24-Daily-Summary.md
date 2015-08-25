@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  2015 08 24 Daily Summary
+title:  2015-08-24 Daily Summary
 date:   2015-08-24 05:08:57
 categories: clay_created
 tags: clay_created
