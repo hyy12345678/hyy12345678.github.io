@@ -18,7 +18,8 @@ image: /assets/article_images/nightmare.JPG
 在一般的开发中，只需要通过阅读相关的API文档来了解每个注解的配置参数的含义，并在代码中正确使用即可。
 在有些情况下，可能会需要开发自己的注解。这在库的开发中比较常见。注解的定义有点类似接口。
 下面的代码给出了一个简单的描述代码分工安排的注解。通过该注解可以在源代码中记录每个类或接口的分工和进度情况。
-
+<pre>
+  <code>
   @Retention(RetentionPolicy.RUNTIME)
   @Target(ElementType.TYPE)
   public @interface Assignment {
@@ -26,6 +27,8 @@ image: /assets/article_images/nightmare.JPG
       int effort();
       double finished() default 0;
   } 
+  </code>
+<pre>
 @interface用来声明一个注解，其中的每一个方法实际上是声明了一个配置参数。
 方法的名称就是参数的名称，返回值类型就是参数的类型。可以通过default来声明参数的默认值。
 在这里可以看到@Retention和@Target这样的元注解，用来声明注解本身的行为。
@@ -46,7 +49,8 @@ Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构
 
 以上面的注解Assignment为例，当每个开发人员都在源代码中更新进度的话，就可以通过一个注解处理器来生成一个项目整体进度的报告。
 首先是注解处理器工厂的实现。
-
+<pre>
+<code>
   public class AssignmentApf implements AnnotationProcessorFactory {  
       public AnnotationProcessor getProcessorFor(Set<AnnotationTypeDeclaration> atds,? AnnotationProcessorEnvironment env) {
           if (atds.isEmpty()) {
@@ -61,7 +65,8 @@ Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构
           return Collections.emptySet();
       }
   }
-  
+  </code>
+  </pre>
   AnnotationProcessorFactory接口有三个方法：
   getProcessorFor是根据注解的类型来返回特定的注解处理器；
   supportedAnnotationTypes是返回该工厂生成的注解处理器所能支持的注解类型；
@@ -70,7 +75,8 @@ Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构
   当工厂通过 supportedOptions方法声明了所能识别的附加选项之后，
   注解处理器就可以在运行时刻通过AnnotationProcessorEnvironment的getOptions方法获取到选项的实际值。
   注解处理器本身的基本实现如下所示。
-  
+  <pre>
+  <code>
     public class AssignmentAp implements AnnotationProcessor { 
       private AnnotationProcessorEnvironment env;
       private AnnotationTypeDeclaration assignmentDeclaration;
@@ -94,7 +100,8 @@ Mirror API（com.sun.mirror.*）描述的是程序在编译时刻的静态结构
           }
       }   
   }
-  
+  </code>
+  </pre>
   注解处理器的处理逻辑都在process方法中完成。
   通过一个声明（Declaration）的getAnnotationMirrors方法就可以获取到该声明上所添加的注解的实际值。
   得到这些值之后，处理起来就不难了。
@@ -108,7 +115,8 @@ JDK 5中的apt工具的不足之处在于它是Oracle提供的私有实现。
 对Mirror API也进行了更新，形成了新的javax.lang.model包。
 注解处理器的使用也进行了简化，不需要再单独运行apt这样的命令行工具，Java编译器本身就可以完成对注解的处理。
 对于同样的功能，如果用JSR 269的做法，只需要一个类就可以了。
-
+  <pre>
+  <code>
   @SupportedSourceVersion(SourceVersion.RELEASE_6)
   @SupportedAnnotationTypes("annotation.Assignment")
   public class AssignmentProcess extends AbstractProcessor {
@@ -134,7 +142,8 @@ JDK 5中的apt工具的不足之处在于它是Oracle提供的私有实现。
           }
       } 
   }  
-  
+  </pre>
+  </code>
   仔细比较上面两段代码，可以发现它们的基本结构是类似的。
   不同之处在于JDK 6中通过元注解@SupportedAnnotationTypes来声明所支持的注解类型。
   另外描述程序静态结构的javax.lang.model包使用了不同的类型名称。
@@ -151,13 +160,15 @@ Java反射API的AnnotatedElement接口提供了获取类、方法和域上的注
 下面通过一个具体的实例来分析说明在实践中如何来使用和处理注解。
 假定有一个公司的雇员信息系统，从访问控制的角度出发，对雇员的工资的更新只能由具有特定角色的用户才能完成。
 考虑到访问控制需求的普遍性，可以定义一个注解来让开发人员方便的在代码中声明访问控制权限。
-
+  <pre>
+  <code>
   @Retention(RetentionPolicy.RUNTIME)
   @Target(ElementType.METHOD)
   public @interface RequiredRoles {
       String[] value();
   }
-  
+  </pre>
+  </code>
   下一步则是如何对注解进行处理，这里使用的Java的反射API并结合动态代理。下面是动态代理中的InvocationHandler接口的实现。
     public class AccessInvocationHandler<T> implements InvocationHandler {
       final T accessObj;
@@ -176,7 +187,8 @@ Java反射API的AnnotatedElement接口提供了获取类、方法和域上的注
           return method.invoke(accessObj, args);
       } 
   } 
-  
+  </pre>
+  </code>
   在具体使用的时候，首先要通过Proxy.newProxyInstance方法创建一个EmployeeGateway的接口的代理类，使用该代理类来完成实际的操作。
   
   参考资料
