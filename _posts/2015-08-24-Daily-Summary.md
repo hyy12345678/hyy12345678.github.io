@@ -1,4 +1,11 @@
-
+---
+layout: post
+title:  2015 08 24 Daily Summary
+date:   2015-08-24 05:08:57
+categories: clay_created
+tags: clay_created
+image: /assets/article_images/nightmare.JPG
+---
 - 小小吐槽一下，又是一个加班木有加班费和调休的部门。呵呵
 
 - 回归正题，今天学习了一下Java注解，下面是一点笔记。
