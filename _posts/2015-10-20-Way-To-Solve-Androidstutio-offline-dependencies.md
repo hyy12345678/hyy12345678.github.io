@@ -49,3 +49,33 @@ Maven 安装 JAR 包的命令是：
     mvn install:install-file -Dfile=D:\mvn\spring-context-support-3.1.0.RELEASE.jar -DgroupId=org.springframework -DartifactId=spring-context-support -Dversion=3.1.0.RELEASE -Dpackaging=jar
 
 最后，就可以在现有的网络环境下愉快的使用Android Studio了。
+
+ps:补充一些关于加载本地aar包的方法的内容
+
+项目中使用的基础类库是aar包，之前的配置是通过上传到Maven私服，然后在gradle的build里这样引用：
+      ```
+      compile 'com.xxx.yy.android:base-core-debug:1.0.0@aar'
+      compile 'com.xxx.yy.android:base-ui-debug:1.0.0@aar'
+      compile 'com.xxx.yy.android:base-net-debug:1.0.0@aar'
+      compile 'com.xxx.yy.android:base-database-debug:1.0.0@aar'
+      ```
+但是由于是私服，回到家里便没有办法访问。于是有了下边的办法：
+      在project级别的build.gradle这样配置一个repository(在buildscript和allprojects中都要添加):
+       ```
+       flatDir {
+            dirs 'goldlibs'
+        }
+      ```
+      这里的goldlibs是建立在项目工程下的一个目录，和src同级。
+      
+      然后在module级别的build.gradle这样引用：
+      ```
+      compile(name: 'core-debug', ext: 'aar')
+      compile(name: 'database-debug', ext: 'aar')
+      compile(name: 'net-debug', ext: 'aar')
+      compile(name: 'ui-debug', ext: 'aar')
+      ```
+      
+      刷新gradle，这样就可以引入本地的aar包了。
+
+
