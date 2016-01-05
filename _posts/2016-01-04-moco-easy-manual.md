@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  一个封装循环广告栏的例子
+title:  moco的简明使用教程
 date:   2016-01-04 09:05:32
 categories: clay_created
 tags: clay_created
