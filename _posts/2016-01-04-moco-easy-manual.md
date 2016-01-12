@@ -63,7 +63,7 @@ _接下来，访问 Web 服务_
 
 ## Moco 的复杂实例
 
-实例一， 带参数的 HTTP 请求   
+实例1， 带参数的 HTTP 请求   
 启动浏览器，并访问  
 
 ```
@@ -85,5 +85,30 @@ _接下来，访问 Web 服务_
    
 启动浏览器，并访问   
 http://localhost:12306/foo?parm=blash
+
+实例2， 带参数的 HTTP 请求，并在响应中打印出来
+```
+{
+      "request" :
+        {
+          "uri" : "/fooTemplateCustomQuery"
+          
+        },
+      "response" :
+        {
+          "headers":{
+              "content-type":"application/json"
+            }
+            ,
+          "text":{
+            "template":"{\"name\":\"${req.queries['name']}\",\"card\":\"${req.queries['card']}\"}"
+          }
+           
+        }
+    }
+```
+
+启动浏览器，并访问   
+http://localhost:12345/fooTemplateCustomQuery?name=hyy&card=123321
 
 
