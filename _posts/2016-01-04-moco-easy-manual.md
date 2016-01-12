@@ -111,4 +111,91 @@ http://localhost:12306/foo?parm=blash
 启动浏览器，并访问   
 http://localhost:12345/fooTemplateCustomQuery?name=hyy&card=123321
 
+实例3， 返回一个特定Status code的response
+```
+[
+    {
+      "request" :
+        {
+          "uri" : "/fooSCR503"
+          
+        },
+      "response" :
+        {
+          "status" : 503,
+          "headers":{
+            "Error":"unkown error",
+            "Error-Code":"110001"
+          }
+        }
+    }
+]
+```
+
+启动浏览器，并访问   
+http://localhost:12345/fooSCR503
+
+
+实例3， 返回json
+我们经常情况下返回的数据都是json格式，但是如果手工拼的话效率不高，也容易出错，还好moco支持json对象的返回。
+这个例子里还展示了根据query的值拦截请求
+注意，如果使用template功能获取request的query，header的数据，只能手工拼json字符串了，目前moco还没有提供好的解决办法。
+```
+{
+    "request": {
+      "uri": "/data/2.5/weather",
+      "queries": {
+        "q": "Shenyang,China",
+        "appid": "2de143494c0b295cca9337e1e96b00e0"
+      }
+    },
+    "response": {
+      "json": {
+        "coord": {
+          "lon": 123.43,
+          "lat": 41.79
+        },
+        "weather": [
+          {
+            "id": 800,
+            "main": "Clear",
+            "description": "Sky is Clear",
+            "icon": "01n"
+          }
+        ],
+        "base": "stations",
+        "main": {
+          "temp": 262.15,
+          "pressure": 1040,
+          "humidity": 61,
+          "temp_min": 262.15,
+          "temp_max": 262.15
+        },
+        "visibility": 10000,
+        "wind": {
+          "speed": 6,
+          "deg": 360
+        },
+        "clouds": {
+          "all": 0
+        },
+        "dt": 1448283600,
+        "sys": {
+          "type": 1,
+          "id": 7474,
+          "message": 0.0102,
+          "country": "CN",
+          "sunrise": 1448232295,
+          "sunset": 1448266801
+        },
+        "id": 2034937,
+        "name": "Shenyang",
+        "cod": 200
+      }
+    }
+  }
+```
+
+启动浏览器，并访问   
+http://localhost:12345/data/2.5/weather?q=Shenyang,China&appid=2de143494c0b295cca9337e1e96b00e0
 
