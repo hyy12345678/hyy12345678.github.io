@@ -26,9 +26,64 @@ _首先，您需要：_
 
 _接下来，按照下面的步骤安装 Moco_   
 1. 获取 Moco 源文件,使用 git 命令，获取最新的代码
+
 ```
 git clone https://github.com/dreamhead/moco.git
 ```
-也可以直接下载编译好的 Jar 文件，目前最新版本0.10.2
-    
+
+2. 也可以直接下载编译好的 Jar 文件，目前最新版本0.10.2    
+http://repo1.maven.org/maven2/com/github/dreamhead/moco-runner/0.10.2/moco-runner-0.10.2-standalone.jar   
+
+_接下来，编写配置文件，以简单的 Hello World 为例_   
+```
+[
+  {
+    "response" :
+      {
+        "text" : "Hello, Moco"
+      }
+  }
+]
+```
+
+将文件以 json 的后缀存储，比如 foo.json
+
+_接下来，启动Moco服务_   
+在命令行输入
+
+```
+java -jar moco-runner-<version>-standalone.jar start -p 12306 -c foo.json
+```
+
+注：-p 指定 Moco 服务端口 （目前仅指 Web 端口）   
+
+_接下来，访问 Web 服务_   
+打开浏览器，访问 http://localhost:12306
+您应该可以立即看到久违了的"Hello World"
+
+## Moco 的复杂实例
+
+实例一， 带参数的 HTTP 请求   
+启动浏览器，并访问  
+
+```
+{
+  "request" :
+    {
+      "uri" : "/foo",
+      "queries" :
+        {
+          "param" : "blah"
+        }
+    },
+  "response" :
+    {
+      "text" : "bar"
+    }
+}
+```
+   
+启动浏览器，并访问   
+http://localhost:12306/foo?parm=blash
+
 
