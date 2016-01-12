@@ -19,17 +19,16 @@ Moco 的出现，正是为了解决这些问题。开发团队只要根据自己
 > 国际惯例，先从hello world开始我们的moco之旅吧。   
 
 _首先，您需要：_   
-1. 配置您的 Java 环境
-    下载 Java 程序，并设置好系统环境变量 （PATH， JAVA_HOME）
-2. 安装并配置 Gradle
+1. 配置您的 Java 环境   
+    下载 Java 程序，并设置好系统环境变量 （PATH， JAVA_HOME）   
+2. 安装并配置 Gradle   
     具体可以参考http://www.gradle.org/
 
 _接下来，按照下面的步骤安装 Moco_   
-1. 获取 Moco 源文件
-    * 使用 git 命令，获取最新的代码
+1. 获取 Moco 源文件,使用 git 命令，获取最新的代码
 ```
 git clone https://github.com/dreamhead/moco.git
 ```
-    * 也可以直接下载编译好的 Jar 文件，目前最新版本0.10.2
+也可以直接下载编译好的 Jar 文件，目前最新版本0.10.2
     
 
