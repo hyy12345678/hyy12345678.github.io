@@ -137,7 +137,7 @@ http://localhost:12345/fooTemplateCustomQuery?name=hyy&card=123321
 http://localhost:12345/fooSCR503
 
 
-实例3， 返回json
+实例4， 返回json
 我们经常情况下返回的数据都是json格式，但是如果手工拼的话效率不高，也容易出错，还好moco支持json对象的返回。
 这个例子里还展示了根据query的值拦截请求
 注意，如果使用template功能获取request的query，header的数据，只能手工拼json字符串了，目前moco还没有提供好的解决办法。
@@ -199,4 +199,60 @@ http://localhost:12345/fooSCR503
 
 启动浏览器，并访问   
 http://localhost:12345/data/2.5/weather?q=Shenyang,China&appid=2de143494c0b295cca9337e1e96b00e0
+   
+实例5， 模拟下载附件，当然可以
+```
+{
+  "request": {
+    "uri": "/file_attachment"
+  },
+  "response": {
+    "attachment": {
+        "filename": "foo.txt",
+        "file": "foo.response"
+    }
+  }
+}
+```
+
+filename为下载文件被重命名的名字，file为文件的目录位置和文件名，以脚本执行目录为基准。
+
+启动浏览器，并访问   
+http://localhost:12345/file_attachment
+
+实例6， 使用Cookie，在request和response里
+在request里指定Cookie的值，可以拦截指定的请求
+```
+{
+    "request" :
+      {
+        "uri" : "/cookieRequest",
+        "cookies" :
+          {
+            "login" : "true"
+          }
+      },
+    "response" :
+      {
+        "text" : "success"
+       }
+  }
+```
+
+在response里指定Cookie的值，可以返回特定的Cookie
+```
+{
+    "request" :
+      {
+        "uri" : "/cookieReponse"
+      },
+    "response" :
+      {
+        "cookies" :
+        {
+          "login" : "true"
+        }
+      }
+}
+```
 
