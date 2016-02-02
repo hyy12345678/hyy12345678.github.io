@@ -9,7 +9,7 @@ image: /assets/article_images/nightmare.JPG
 
 # Database related
 
-－ 解锁oracle表
+- 解锁oracle表
   dba用户登录
   sqlplus / sysdba
   
